@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>箭头边框</title>
+  <style type="text/css">
+    .first {
+      width: 0;
+      height: 0px;
+      border: 100px solid transparent;
+      border-color: #f00 #ff0 #05f #0f0;
+    }
+
+
+
+    .app {
+      margin-top: 100px;
+    }
+
+    .demo {
+      width: 200px;
+      height: 200px;
+      border: 2px solid #f30;
+      border-radius: 10px;
+
+      position: relative;
+    }
+
+    .out,
+    .in {
+      position: absolute;
+      width: 0;
+      height: 0px;
+    }
+
+    .out {
+      border: 20px solid transparent;
+      border-bottom-color: #f30;
+      /*这里的颜色一定要跟上面demo边框颜色一样*/
+      top: -40px;
+      left: 20%;
+    }
+
+    .in {
+      border: 18px solid transparent;
+      border-bottom-color: #fff;
+      /*这里的颜色一定要跟demo背景颜色一样*/
+
+
+      top: -35px;
+      left: 21%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="first">
+  </div>
+  <div class="app">
+    <div class="demo">
+      <div class="out"></div>
+      <div class="in"></div>
+    </div>
+  </div>
+</body>
+
+</html>

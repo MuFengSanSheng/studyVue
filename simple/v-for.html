@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>列表渲染</title>
+  <script src="../content/script/vue.js"></script>
+</head>
+
+<body>
+  <ul id="example-1">
+    <li v-for="item in items">
+      {{ item.message }}----{{x}}
+    </li>
+  </ul>
+  <h2>带索引的遍历</h2>
+  <ul id="example-2">
+      <li v-for="(item, index) in items">
+        {{ parentMessage }} - {{ index }} - {{ item.message }}
+      </li>
+    </ul>
+</body>
+<script>
+  var example1 = new Vue({
+    el: '#example-1',
+    data: {
+      x:++[[]][+[]]+[+[]],
+      items: [
+        { message: 'Foo' },
+        { message: 'Bar' }
+      ]
+    }
+  })
+
+  var example2 = new Vue({
+  el: '#example-2',
+  data: {
+    parentMessage: 'Parent',
+    items: [
+      { message: 'Foo' },
+      { message: 'Bar' }
+    ]
+  }
+})
+</script>
+
+</html>

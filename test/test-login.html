@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>测试登录</title>
+  <script src="../content/script/vue.js"></script>
+  <script src="../content/script/axios.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <button v-on:click="btnLogin">登录</button>
+  </div>
+</body>
+<script>
+  const vm = new Vue({
+    el: '#app',
+    data: {
+
+    },
+    methods: {
+      btnLogin: function () {
+        let that = this;
+        axios({
+          url: "http://localhost:8080/api/platform/publish/PublishInfoAdmin/test",
+          method: 'post',
+          data: {
+            inputView: {
+              UserName: "wangjun",
+              PassWord: "kcyg2019"
+            }
+          }
+        }).then(res => {
+          console.log('请求结果：', res);
+          if (res.data.status == "success") {
+
+          }
+          if (res.data.status != "success") {
+            alert("出现错误，请联系技术人员！")
+          }
+        });
+      }
+    }
+  })
+</script>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div class="app">
+    <table>
+      <thead>
+        <td>id</td>
+        <td>姓名</td>
+        <td>年龄</td>
+      </thead>
+      <tbody>
+        <tr v-for="(item,index) in arr" >
+          <td>{{item.id}}</td>
+          <td>{{item.name}}</td>
+          <td>{{item.age}}</td>
+        </tr>
+      </tbody>
+    </table>
+   
+  </div>
+
+  <script src="../content/script/vue.js"></script>
+  <script>
+    const vm = new Vue({
+      el:'.app',
+      data:{
+        arr:[
+          {
+            id:1,
+            name:'xiaow',
+            age:24
+          },
+          {
+            id:2,
+            name:'mm',
+            age:2
+          },
+          {
+            id:3,
+            name:'xiaoxi',
+            age:20
+          }
+        ]
+      }
+    })
+  </script>
+</body>
+</html>

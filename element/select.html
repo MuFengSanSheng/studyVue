@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>选择器</title>
+  <!-- 引入样式 -->
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+</head>
+
+<body>
+  <div class="app">
+    <el-select v-model="value" placeholder="请选择">
+      <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+      </el-option>
+    </el-select>
+    <div>value:{{value}}</div>
+    
+    <div></div>
+  </div>
+
+</body>
+<!-- 引入组件库 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script>
+  const vm = new Vue({
+    el: ".app",
+    data: {
+      options: [{
+          value: '1',
+          label: '黄金糕'
+        }, {
+          value: '2',
+          label: '双皮奶'
+        }, {
+          value: '3',
+          label: '蚵仔煎'
+        }, {
+          value: '4',
+          label: '龙须面'
+        }, {
+          value: '5',
+          label: '北京烤鸭'
+        }],
+        value: 2
+    }
+  })
+ 
+</script>
+
+</html>
