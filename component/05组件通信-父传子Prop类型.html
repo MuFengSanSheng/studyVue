@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>组件通信-父传子</title>
+</head>
+<body>
+  <div class="app">
+   <my-cpn :cmusic="music" :ctitle="title"></my-cpn>
+  </div>
+
+  <!-- 分离的组件 -->
+  <template id="mycpn">
+    <div> 
+      <h2>{{ctitle}}</h2>
+      <ul>
+        <li v-for="item of cmusic">{{item}}</li>
+      </ul>
+    </div>
+  </template>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  //1、注册全局组件  组件的实质就是一个缩减版的vue对象
+  Vue.component(
+    'my-cpn',{
+      template:'#mycpn',
+      props:["cmusic", "ctitle"],
+      data(){
+        return {}
+      },
+      methods:{
+
+      }
+    }
+  )
+  const vm =new Vue({
+    el : '.app',
+    data:{
+      music:["你好吗","昨日青空","你的答案","blbl"],
+      title:"组件通信演示,Vue实例是父组件"
+    }  
+  })
+</script>
+</html>

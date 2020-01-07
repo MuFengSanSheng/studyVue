@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>组件data必须是函数</title>
+</head>
+<body>
+  <div class="app">
+   <my-cpn></my-cpn>
+   <my-cpn></my-cpn>
+   <my-cpn></my-cpn>
+  </div>
+
+  <!-- 分离的组件 -->
+  <template id="mycpn">
+    <div> 
+      <div>
+        当前数据是：{{count}}
+      </div>      
+      <button @click="increase">+</button>
+      <button @click="decrease">-</button>
+    </div>
+  </template>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  //1、注册全局组件  组件的实质就是一个缩减版的vue对象
+  Vue.component(
+    'my-cpn',{
+      template:'#mycpn',
+      //此处的data必须是一个函数,并且返回一个实例对象,每个实例可以维护一份被返回对象的独立的拷贝
+      //每次调用函数都需要实例化，用前端理解就是闭包
+      data(){
+        return {
+          count:0
+        }
+      },
+      methods:{
+        increase(){
+          this.count++;
+        },
+        decrease(){
+          this.count--;
+        }
+      }
+    }
+  )
+  const vm =new Vue({
+    el : '.app',
+    data:{
+ 
+    },
+    //注册局部组件
+    components:{ 
+      'my-cpn2':{
+        template: '#cpn2'
+      }
+    }
+  })
+</script>
+</html>
