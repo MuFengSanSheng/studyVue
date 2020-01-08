@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>子传父（自定义事件）</title>
+</head>
+<body>
+  <div class="app">
+    <my-cpn @item-click="fatherClick"></my-cpn>
+  </div>
+
+  <!-- 组件模板 -->
+  <template id="cpn">
+    <div>
+      <button @click="childClick(item)" v-for="item of nav">{{item}}</button>
+    </div>
+  </template>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script> 
+  //子组件
+  const mycpn = {
+    template: '#cpn',
+    data(){
+      return{
+        nav:["热门推荐","手机数码","家用电器","电脑办公"]
+      }
+    },
+    methods:{
+      childClick(item){
+        //发射自定义事件给父组件,并将需要的参数发送给父组件
+        this.$emit('item-click',item)
+        // console.log(item)
+      }
+    }
+  }
+
+  //父组件
+  const vm = new Vue({
+    el: '.app',
+    data:{
+
+    },
+    //局部注册组件 
+    components:{
+      "my-cpn": mycpn
+    },
+    methods:{
+      fatherClick(item){
+        console.log("事件触发:",item)
+      }
+    }
+  })
+</script>
+</html>

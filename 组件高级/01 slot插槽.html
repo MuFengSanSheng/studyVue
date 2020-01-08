@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>插槽</title>
+</head>
+<body>
+  <div class="app">
+    <my-cpn><button @click="btnClick">是的</button></my-cpn>
+    <my-cpn>哈哈<button @click="btnClick">是的</button></my-cpn>
+    <my-cpn><i>1111</i></my-cpn>
+    <my-cpn></my-cpn>
+    -------------------------------
+    <my-cpn2></my-cpn2>
+    <my-cpn2><h3>不，你不是，我覆盖了你</h3></my-cpn2>
+  </div>
+
+  <!-- 组件模板 -->
+  <template id="cpn">
+    <div>
+      <h2>我是一个组件</h2>
+      <span>对对对，说的就是我（肯定三连）</span>
+      <slot></slot>
+    </div>
+  </template>
+
+  <template id="cpn2">
+    <div>
+      <h2>默认插槽组件</h2>
+      <div>
+        <span>对对对，说的就是我（肯定三连）</span>
+        <slot>
+          <button @click="handleClick">我就是默认的插槽</button>
+        </slot>
+      </div>      
+    </div>
+  </template>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script> 
+  //子组件
+  const mycpn = {
+    template: '#cpn',
+    data(){
+      return{       
+      }
+    },
+    methods:{}
+  }
+
+  const mycpn2 = {
+    template: '#cpn2',
+    data(){
+      return{       
+      }
+    },
+    methods:{
+      handleClick(e){
+        console.log("组件内触发:",e)
+      }
+    }
+  }
+
+  //父组件
+  const vm = new Vue({
+    el: '.app',
+    data:{
+
+    },
+    //局部注册组件 
+    components:{
+      "my-cpn": mycpn,
+      "my-cpn2": mycpn2
+    },
+    methods:{
+      btnClick(e){
+        console.log("触发:",e)
+      }
+    }
+  })
+</script>
+</html>
