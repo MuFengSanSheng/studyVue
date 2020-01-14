@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>环形进度条</title>
+  <!-- 引入样式文件 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.4/lib/index.css">
+</head>
+
+<body>
+  <div class="app">
+    <van-circle v-model="currentRate" :rate="30" :speed="50" text="1111" />
+  </div>
+</body>
+<script src="../content/script/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vant@2.4/lib/vant.min.js"></script>
+<script>
+  const vm = new Vue({
+    el: '.app',
+    data: {
+      currentRate: 0
+    },
+    computed: {
+      text() {
+        console.log(this.currentRate)
+        return this.currentRate.toFixed(2) + '%'
+      }
+    }
+  })
+</script>
+
+</html>
