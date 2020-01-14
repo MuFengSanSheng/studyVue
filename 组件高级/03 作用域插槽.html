@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>作用域插槽</title>
+</head>
+<body>
+  <div class="app">
+    <div>
+      <h3>作用域插槽:</h3>
+      <span style="color: red;">
+        父组件替换插槽的标签，但是内容由子组件提供，
+        即 父组件对子组件的展示方式不满意，重新定义一种方式展示
+      </span>
+    </div>
+
+    <hr>
+    <my-cpn></my-cpn>
+    <hr>
+    <h2 style="color: coral;">换个方式展示组件</h2>
+    <my-cpn>
+     <template v-slot="slot">
+       <span>{{slot.data.join(' - ')}}</span>
+     </template>
+    </my-cpn>
+  </div>
+
+  <!-- 组件模板 -->
+  <template id="cpn">
+    <div>
+      <h3>我是一个作用域插槽</h3>
+      <slot :data="movice">
+        <ul>
+          <li v-for="item of movice">{{item}}</li>
+        </ul>
+      </slot>   
+    </div>
+  </template>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script> 
+  //子组件
+  const mycpn = {
+    template: '#cpn',
+    data(){
+      return{ 
+        movice:["一人之下","我的世界","昨日青空","罗小黑战记","小林家的龙女仆"]      
+      }
+    },
+    methods:{}
+  }
+  
+
+
+  //父组件
+  const vm = new Vue({
+    el: '.app',
+    data:{
+
+    },
+    //局部注册组件 
+    components:{
+    "my-cpn": mycpn
+    },
+    methods:{
+      btnClick(e){
+        console.log("触发:",e)
+      }
+    }
+  })
+</script>
+</html>
